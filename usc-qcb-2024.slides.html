@@ -821,7 +821,7 @@ class="math inline">\(Gv\)</span>.</p>
 <div class="fragment">
 <p>If <span class="math inline">\(v_j\)</span> is the additive effect of
 SNP <span class="math inline">\(j\)</span>, then <span
-class="math inline">\((Gv)_i\)</span> is the genetic value of chomosome
+class="math inline">\((Gv)_i\)</span> is the genetic value of chromosome
 <span class="math inline">\(i\)</span>.</p>
 </div>
 </section>
@@ -1093,14 +1093,14 @@ class="math inline">\(p(t)\)</span>,</p></li>
 class="math display">\[p(y_{ij}|t_i-t_j) \propto (t_j - t_j)^{y_{ij}}
 e^{-\mu s_{ij} (t_i - t_j)}\]</span></p></li>
 <li class="fragment"><p>the full likelihood is <span
-class="math display">\[p(t) \prod_{ij} p(y_{ij}|t_i -
+class="math display">\[p(t,y) = p(t) \prod_{ij} p(y_{ij}|t_i -
 t_j)\]</span></p></li>
 <li class="fragment"><p>and so the marginal posterior on <span
 class="math inline">\(t_i\)</span> is <span
 class="math display">\[p(t_i|y) = \frac{\int p(t,y) dt_{\setminus
 i}}{\int p(t,y) dt}\]</span></p></li>
-<li class="fragment"><p><strong>but</strong> that denominator is a
-bummer.</p></li>
+<li class="fragment"><p>but, those integrals are rather
+difficult.</p></li>
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
@@ -1149,8 +1149,8 @@ thanks to exponential family magic
 and some serious computational magic
 -->
 </section>
-<section id="some-assembly-requried" class="slide level2">
-<h2>Some assembly requried</h2>
+<section id="some-assembly-required" class="slide level2">
+<h2>Some assembly required</h2>
 <div class="columns">
 <div class="column" style="width:70%;">
 <ul>
@@ -1169,13 +1169,13 @@ class="math inline">\({}_2F_1(a,b;c)\)</span>.</li>
 </div>
 </div>
 </section>
-<section id="section-4" class="slide level2"
+<section id="validation-simulation" class="slide level2"
 data-background-image="figs/folks/yan_wong.jpg"
 data-background-position="bottom 50px right 50px"
 data-background-size="10%">
 <h2 data-background-image="figs/folks/yan_wong.jpg"
 data-background-position="bottom 50px right 50px"
-data-background-size="10%"></h2>
+data-background-size="10%">Validation: simulation</h2>
 <div class="r-stack">
 <div class="fragment">
 <p><img data-src="figs/sampling_sim_sub_l1_l2.png"
@@ -1187,13 +1187,13 @@ style="width:70.0%" /></p>
 </div>
 </div>
 </section>
-<section id="section-5" class="slide level2"
+<section id="validation-real-data" class="slide level2"
 data-background-image="figs/folks/yan_wong.jpg"
 data-background-position="bottom 50px right 50px"
 data-background-size="10%">
 <h2 data-background-image="figs/folks/yan_wong.jpg"
 data-background-position="bottom 50px right 50px"
-data-background-size="10%"></h2>
+data-background-size="10%">Validation: real data</h2>
 <p><img data-src="figs/validation_sub.png" /></p>
 </section></section>
 <section>
@@ -1201,7 +1201,7 @@ data-background-size="10%"></h2>
 <h1>Back to the data</h1>
 
 </section>
-<section id="section-6" class="slide level2"
+<section id="section-4" class="slide level2"
 data-background-image="figs/folks/ben_jeffery.jpg"
 data-background-position="bottom 50px right 50px"
 data-background-size="10%">
@@ -1216,7 +1216,7 @@ phased 100,000 Genomes Project (aggV2) dataset.</p>
 </section>
 <section id="adac" class="slide level2">
 <h2>ADAC</h2>
-<p>Age Divergence at Allele Count (ADAC) quantifies (as a bayes factor)
+<p>Age Divergence at Allele Count (ADAC) quantifies (as an odds ratio)
 the probability that a given mutation is older than expected relative to
 some reference set of mutations at the same frequency in the data</p>
 <div class="r-stack">
@@ -1248,12 +1248,12 @@ class="slide level2">
 individual’s ancestry is not well-represented in the data.</p></li>
 <li><p>ARGs capture the complex and continuous nature of human genetic
 ancestry.</p></li>
-<li><p>Mutations’ age estimation reflects thsi uncertainty (at single
+<li><p>Mutations’ age estimation reflects this uncertainty (at single
 locus resolution).</p></li>
 <li><p>ARG inference and variant dating methods that work well with
-large, heterogeneous, and unbalanced biobanks can provide valuabel
+large, heterogeneous, and unbalanced biobanks can provide valuable
 insights into genetic variation without the need for discrete
-cateogrizations.</p></li>
+categorizations.</p></li>
 </ul>
 </section></section>
 <section>
@@ -1375,7 +1375,7 @@ Co-Lab</a></li>
 </div>
 </div>
 </section>
-<section id="section-7" class="slide level2"
+<section id="section-5" class="slide level2"
 data-background-image="figs/guillemots_thanks.png"
 data-background-position="center" data-background-size="50%">
 <h2 data-background-image="figs/guillemots_thanks.png"
@@ -1538,7 +1538,6 @@ data-background-position="center" data-background-size="50%"></h2>
         mobileViewDistance: 2,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],

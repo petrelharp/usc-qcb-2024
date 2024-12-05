@@ -609,7 +609,7 @@ and a $M$-vector $v$, compute $Gv$.
 . . .
 
 If $v_j$ is the additive effect of SNP $j$,
-then $(Gv)_i$ is the genetic value of chomosome $i$.
+then $(Gv)_i$ is the genetic value of chromosome $i$.
 
 
 ## Matrix multiplication
@@ -907,12 +907,12 @@ subject to $\{t_i < t_j : i \to j \in \mathcal{E}\}$
 $$p(y_{ij}|t_i-t_j) \propto (t_j - t_j)^{y_{ij}} e^{-\mu s_{ij} (t_i - t_j)}$$
 
 - the full likelihood is
-$$p(t) \prod_{ij} p(y_{ij}|t_i - t_j)$$
+$$p(t,y) = p(t) \prod_{ij} p(y_{ij}|t_i - t_j)$$
 
 - and so the marginal posterior on $t_i$ is
 $$p(t_i|y) = \frac{\int p(t,y) dt_{\setminus i}}{\int p(t,y) dt}$$
 
-- **but** that denominator is a bummer.
+- but, those integrals are rather difficult.
 
 :::
 
@@ -976,7 +976,7 @@ thanks to exponential family magic
 and some serious computational magic
 -->
 
-## Some assembly requried
+## Some assembly required
 
 
 ::: columns
@@ -999,7 +999,7 @@ Additional magic:
 ::::::: 
 ::: 
 
-##  {data-background-image="figs/folks/yan_wong.jpg" data-background-position="bottom 50px right 50px" data-background-size=10%}
+## Validation: simulation {data-background-image="figs/folks/yan_wong.jpg" data-background-position="bottom 50px right 50px" data-background-size=10%}
 
 
 ::: r-stack
@@ -1015,7 +1015,7 @@ Additional magic:
 :::
 
 
-## {data-background-image="figs/folks/yan_wong.jpg" data-background-position="bottom 50px right 50px" data-background-size=10%}
+## Validation: real data {data-background-image="figs/folks/yan_wong.jpg" data-background-position="bottom 50px right 50px" data-background-size=10%}
 
 ![](figs/validation_sub.png)
 
@@ -1033,7 +1033,7 @@ We built the world’s largest whole-chromosome tree sequence from the phased 10
 
 ## ADAC
 
-Age Divergence at Allele Count (ADAC) quantifies (as a bayes factor) the probability that a given mutation is older than expected relative to some reference set of mutations at the same frequency in the data
+Age Divergence at Allele Count (ADAC) quantifies (as an odds ratio) the probability that a given mutation is older than expected relative to some reference set of mutations at the same frequency in the data
 
 ::: r-stack
 
@@ -1067,12 +1067,12 @@ Age Divergence at Allele Count (ADAC) quantifies (as a bayes factor) the probabi
 
 - ARGs capture the complex and continuous nature of human genetic ancestry. 
 
-- Mutations' age estimation reflects thsi uncertainty (at single locus resolution). 
+- Mutations' age estimation reflects this uncertainty (at single locus resolution). 
 
 - ARG inference and variant dating methods that work well with
     large, heterogeneous, and unbalanced biobanks
-    can provide valuabel insights into genetic variation
-    without the need for discrete cateogrizations.
+    can provide valuable insights into genetic variation
+    without the need for discrete categorizations.
 
 
 # Wrap-up
