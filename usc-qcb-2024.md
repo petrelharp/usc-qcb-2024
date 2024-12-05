@@ -6,10 +6,25 @@ date: "Quantitative and Computational Biology Seminar<br/> University of Souther
 
 # Outline
 
+::: columns
+:::::: {.column width=60%}
+
 1. Ancestral Recombination Graphs (ARGs)
 2. Tree sequences: storage and computation
 3. Variational dating of ARGs
 4. Application: pathogenic variants
+
+::::::
+:::::: {.column width=60%}
+
+::: {.fragment .floatright}
+![tskit logo](figs/tskit_logo.png){width=60%}
+
+[tskit.dev](https://tskit.dev)
+:::
+
+:::::: 
+::: 
 
 <!--
 Abstract: The Ancestral Recombination Graph (or, ARG) is a way of representing all ancestral relationships
@@ -39,9 +54,6 @@ Kalapuya people were dispossessed of their indigenous homeland by the United Sta
 Today, Kalapuya descendants are primarily citizens of the Confederated Tribes of Grand Ronde and the Confederated Tribes of Siletz Indians,
 and continue to make important contributions to their communities, to the UO, to Oregon, and to the world.
 
-. . .
-
-USC: on unceded Tongva land
 
 
 # What's an ARG?
@@ -54,7 +66,7 @@ USC: on unceded Tongva land
 
 . . .
 
-![Genotype matrix from Kreitman 1983](figs/kreitman-1983.png)
+![Genotype matrix from Kreitman 1983](figs/kreitman/kreitman-1983.png)
 
 
 ## Meiosis & Recombination
@@ -77,27 +89,6 @@ USC: on unceded Tongva land
 :::
 ::::::
 
-
----------
-
-::: r-stack
-
-:::: fragment
-![Genotype matrix from Kreitman 1983](figs/kreitman-1983.png)
-::::
-
-:::: {.fragment .centered}
-![](figs/kreitman/kreitman-tsinfer.png){width=30%}
-
-::::: caption
-from [Wong et al 2024, *Genetics*](https://academic.oup.com/genetics/article/228/1/iyae100/7714980)
-:::::
-::::
-
-:::
-
-# ARG inference: a quick overview
-
 ## What is an ARG?
 
 For a set of sampled chromosomes,
@@ -116,6 +107,13 @@ that says how they are related.
 Better, in some ways, is to think of an ARG
 as a set of relationships between haplotypes.
 
+::: fragment
+An ARG, broadly, is a graph-like structure
+that tells us how a set of sampled chromosomes
+are related to each other,
+along a recombining genome.
+:::
+
 ::::::
 :::::: {.column .centered}
 
@@ -123,6 +121,10 @@ as a set of relationships between haplotypes.
 
 ::::::
 :::
+
+
+
+# ARG inference: a quick overview
 
 
 ------------
@@ -136,8 +138,8 @@ ARG/coalescent theory:
 
 ::: incremental
 - [Hudson 1983, 1991](https://www.sciencedirect.com/science/article/abs/pii/0040580983900138)
-- [Griffiths & Marjoram 1997](https://www.bibsonomy.org/bibtex/2d60d21cbcdf8d4328d26446b0ea3bee8/peter.ralph)
 - [Griffiths & Tavaré 1994](https://doi.org/https:%2f%2fdoi.org%2f10.1006%2ftpbi.1994.1023)
+- [Griffiths & Marjoram 1997](https://www.bibsonomy.org/bibtex/2d60d21cbcdf8d4328d26446b0ea3bee8/peter.ralph)
 :::
 
 
@@ -241,11 +243,14 @@ from [Wong et al 2024, *Genetics*](https://academic.oup.com/genetics/article/228
 
 # Storage and computation
 
-## The succinct tree sequence
+::: floatright
+![tskit logo](figs/tskit_logo.png){width=40%}
+:::
 
-For a set of sampled chromosomes,
-at each position along the genome there is a genealogical tree
-that says how they are related.
+-------------
+
+One way to view an ARG is as a sequence of genealogical trees
+(with many nodes shared between adjacent trees).
 
 . . .
 
@@ -264,16 +269,17 @@ is a way to succinctly describe this, er, sequence of trees
 :::: {.caption}
 [Kelleher, Etheridge, & McVean](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004842) 
 ::::
+
 :::
 
 . . .
 
-::: {.columns}
+<div class="columns" style="clear: both;">
 :::::: {.column width=50%}
 
 ![tskit logo](figs/tskit_logo.png){width=80%}
 
-:::
+::::::
 :::::: {.column width=50%}
 
 ::: {.floatright}
@@ -285,8 +291,8 @@ jerome kelleher
 
 :::
 
-:::
 ::::::
+</div>
 
 
 
@@ -621,10 +627,6 @@ then $(Gv)_i$ is the genetic value of chomosome $i$.
 ::::
 
 :::: fragment
-![](figs/tree_sequence/summing_down_01.png)
-::::
-
-:::: fragment
 ![](figs/tree_sequence/summing_down_02.png)
 ::::
 
@@ -668,9 +670,24 @@ then $(Gv)_i$ is the genetic value of chomosome $i$.
 
 -------
 
+::: columns
+:::::: column
 *Naive complexity:* $O(NM)$
 
 *Tree sequence:* $O(N + M + T)$
+
+::: fragment
+Similar: relatedness matrix-vector product
+(used in GWAS, genomic prediction, etc).
+:::
+
+:::::::
+::::::: {.column .centered}
+
+![](figs/tree_sequence/summing_down_10.png)
+
+:::::::
+:::
 
 
 
@@ -680,119 +697,272 @@ then $(Gv)_i$ is the genetic value of chomosome $i$.
 
 ## the [UK 100,000 Genomes project](https://www.genomicsengland.co.uk/initiatives/100000-genomes-project)
 
-![Sam Tallman](figs/folks/Sam-Tallman.jpg){width=20%}
+::: columns
+:::::: {.column width=65%}
+![Sam Tallman](figs/folks/Sam-Tallman.jpg){width=30%}
+![Yan Wong](figs/folks/yan_wong.jpg){width=30%}
+![Ben Jeffery](figs/folks/ben_jeffery.jpg){width=30%}
+![Jerome Kelleher](figs/folks/jerome_kelleher.jpg){width=30%}
+![Duncan Mbuli-Robertson](figs/folks/duncan-mr.jpeg){width=30%}
+![Nate Pope](figs/nate-pope.png){width=30%}
+:::::: 
+:::::: {.column width=35%}
+![tskit logo](figs/tskit_logo.png){width=60%}
 
-![tskit logo](figs/tskit_logo.png){width=10%}
+Sam Tallman
 
-![Yan Wong](figs/folks/yan_wong.jpg){width=10%}
-![Jerome Kelleher](figs/folks/jerome_kelleher.jpg){width=10%}
-![Duncan Mbuli-Robertson](figs/folks/duncan-mr.jpeg){width=10%}
+Yan Wong
+
+Ben Jeffery
+
+Jerome Kelleher
+
+Duncan Mbuli-Robertson
+
+Nate Pope
+
+::: fragment
+*slides in part due to Sam Tallman*
+:::
+
+:::::: 
+::: 
 
 ## The 100,000 Genomes Project
 
-The 100,000 Genomes Project was a British initiative sequencing 100,000 genomes from around 85,000 NHS patients and family members affected by rare disease or cancer.
+::: columns
+:::::: {.column width=60%}
 
-71,800 participants (probands and family members) across over 190 rare diseases, none of which had genetic diagnoses prior to recruitment.
+- UK initiative to sequence 100,000 genomes from 85,000 NHS patients
+    and family members affected by rare disease or cancer.
 
-Since 2018, there has been over 6,000 genetic diagnoses, with more continuing to be uncovered.
+- 71,800 participants (probands and family members) across over 190 rare diseases,
+    none with genetic diagnoses prior to recruitment.
 
-Formed the foundation for the introduction of whole-genome sequencing into the NHS as part of routine clinical care for rare disease and cancer (Genomic Medicine Service).
+- Since 2018, over 6,000 genetic diagnoses
 
-##
+:::::: 
+:::::: {.column width=40%}
 
-motivation: pathogenic variants usually rare
+![](figs/gel-logo.png){width=90%}
 
-this is used in workflows
+:::::: 
+::: 
 
-![https://www.science.org/doi/10.1126/science.adg7492](figs/alpha-missense.jpg)
+## Motivation: penetrant, pathogenic variants usually rare
 
-::: caption
-Cheng et al 2023, AlphaMissense
+::: centered
+![](figs/sam/variant-classification.jpg)
 :::
 
--------
+::: caption
+[Nykamp et al. 2017](https://www.nature.com/articles/gim201737)
+:::
 
-![](figs/genome-study-representation.png){width=50%}
+## But: datasets are notoriously unbalanced
+
+::: columns
+:::::: {.columns width=50%}
+
+::::: fragment
+![](figs/genome-study-representation.png){width=80%}
 
 ::: caption
 Sam Tallman
 :::
+:::::
 
---------
 
-![](figs/manrai_2016_nejm.jpg){width=40%}
+:::::: 
+:::::: {.columns width=50%}
+
+
+:::: fragment
+
+![](figs/manrai_2016_nejm.jpg){width=100%}
 
 ::: caption
 [Manrai et al 2016](https://www.nejm.org/doi/pdf/10.1056/NEJMsa1507092),
 *Genetic Misdiagnoses and the Potential for Health Disparities*
 :::
 
-##
+::::
 
-however, "rare" can depend a lot on location (less so "common")
+:::::: 
+::: 
 
-and datasets are notoriously unbalanced
+## What about age? {data-background-image="figs/folks/yan_wong.jpg" data-background-position="bottom 50px right 50px" data-background-size=10%}
 
 ::: r-stack
 
 :::: fragment
-![](figs/sampling_sim_sub_l1.png){width=60%}
+![](figs/sampling_sim_ages_l1.png){width=90%}
 ::::
 
 :::: fragment
-![](figs/sampling_sim_sub_l1_l2.png){width=60%}
-::::
-
-:::: fragment
-![](figs/sampling_sim_sub_l1_l2_l3.png){width=60%}
+![](figs/sampling_sim_ages_l1_l2.png){width=90%}
 ::::
 
 :::
 
-## 
-
-![](figs/sampling_sim+62400.png)
-
-##
-
-more generally ARGS let us do population-free popgen
 
 
-# Variational dating: tsdate
+# Variational dating: tsdate 0.2
+
+::: centered
+![](figs/tsdate_logo.png){width=30%}
+:::
+
+::: floatright
+![tsNate](figs/nate-pope.png){width=50%}
+:::
+
+::: {.caption .floatright}
+Nate Pope
+:::
 
 ## Dating an ARG
 
-*The problem:*
-Given (sample nodes and edge mutation counts)
-estimate $\{t_i\}$ satisfying (constraints for edges).
+::: columns
+::::::: {.column width=50%}
+
+*Given* an ARG with:
+
+- nodes $\mathcal{N}$
+- edges $\mathcal{E} \subset \{i \to j : i, j \in \mathcal{N}\}$
+- mutation counts per edge $\{y_{ij} : ij \in \mathcal{E}\}$
+- *sample* nodes with known time
+
+*Infer:*
+
+- times $\{t_i\}$ of remaining nodes
+- satisfying the constraints $\{t_i < t_j : i \to j \in \mathcal{E}\}$
+
+:::::::
+::::::: {.column width=50%}
+
+:::: r-stack
+
+![](figs/dating_problem/dating_problem_00.png)
+
+::: fragment
+![](figs/dating_problem/dating_problem_01.png)
+:::
+
+::: fragment
+![](figs/dating_problem/dating_problem_02.png)
+:::
+
+::: fragment
+![](figs/dating_problem/dating_problem_03.png)
+:::
+
+::: fragment
+![](figs/dating_problem/dating_problem_04.png)
+:::
+
+::::
+
+:::::::
+:::
+
+
+## Dating an ARG
+
+::: columns
+::::::: {.column width=50%}
+
+*Goal:* find $\{t_i\}$
 
 *The model:*
-mutation counts are Poisson
+with mutation rate $\mu$, edge span $s_{ij}$:
+$$y_{ij} \sim \text{Poisson}(\mu s_{ij} (t_j - t_i) )$$
 
-The MLE:
-minimizes X subject to Y
+::: fragment
+*The MLE:* minimize
+$$\begin{aligned}&\sum_{ij \in \mathcal{E}} \mu s_{ij} (t_j - t_j) \\&\qquad{}- y_{ij} \log\left(\mu s_{ij} (t_j - t_j)\right)\end{aligned}$$
+subject to $\{t_i < t_j : i \to j \in \mathcal{E}\}$
+:::
 
-## Again, with uncertainty
+:::::::
+::::::: {.column width=50%}
 
-Prior $p(t)$
+![](figs/dating_problem/dating_problem_04.png)
 
-posterior $\propto$
+:::::::
+:::
 
-and so posterior $=$
+## But, what about uncertainty?
 
-but this is intractable
+::: columns
+::::::: {.column width=50%}
+
+*New goal*: infer $t = \{t_i\}$, but Bayesian
+
+::: incremental
+
+- Given a prior $p(t)$,
+
+- the per-edge likelihood is
+$$p(y_{ij}|t_i-t_j) \propto (t_j - t_j)^{y_{ij}} e^{-\mu s_{ij} (t_i - t_j)}$$
+
+- the full likelihood is
+$$p(t) \prod_{ij} p(y_{ij}|t_i - t_j)$$
+
+- and so the marginal posterior on $t_i$ is
+$$p(t_i|y) = \frac{\int p(t,y) dt_{\setminus i}}{\int p(t,y) dt}$$
+
+- **but** that denominator is a bummer.
+
+:::
+
+:::::::
+::::::: {.column width=50%}
+
+::: floatright
+![](figs/dating_problem/dating_problem_05.png){width=120%}
+:::
+
+:::::::
+:::
 
 ## Variational approximation
 
-approximate posterior by product of marginals
-(note: ignoring constraints)
+::: columns
+::::::: {.column width=70%}
 
-which we assume is conjugate to Poisson, ie Gamma
+- Approximate posterior marginals
+    by Gamma distribution
 
-and, how to match? moment matching
+- Fit by matching moments
 
-but this is STILL intractable
+- Result (hopefully) has exact marginal moments
+    but ignores dependence in posterior
 
+:::::::
+::::::: {.column width=70%}
+
+::: r-stack
+
+:::: fragment
+![](figs/nate/plot_like.png)
+::::
+
+:::: fragment
+![](figs/nate/plot_exact.png)
+::::
+
+:::: fragment
+![](figs/nate/plot_both.png)
+::::
+
+:::
+
+::::::: 
+::: 
+
+
+<!--
 ## Expectation propagation
 
 factor variational posterior
@@ -804,47 +974,55 @@ that reduces to adjusting moments for $i$ and $j$
 thanks to exponential family magic
 
 and some serious computational magic
+-->
 
-## Other magic
+## Some assembly requried
+
+
+::: columns
+::::::: {.column width=70%}
+
+- Fit by expectation propagation,
+- requiring efficient stable computation of ${}_2F_1(a,b;c)$.
+
+Additional magic:
 
 - ambiguous singleton phasing
-- efficient stable computation of ${}_2F_1$
 - better prior on root ages
 - "recalibration" of times to enforce molecular clock
 
-## it works!
+:::::::
+::::::: {.column width=70%}
+
+![](figs/nate-pope-hat.png)
+
+::::::: 
+::: 
+
+##  {data-background-image="figs/folks/yan_wong.jpg" data-background-position="bottom 50px right 50px" data-background-size=10%}
 
 
 ::: r-stack
 
 :::: fragment
-![](figs/sampling_sim_sub_l1.png){width=60%}
+![](figs/sampling_sim_sub_l1_l2.png){width=70%}
 ::::
 
 :::: fragment
-![](figs/sampling_sim_sub_l1_l2.png){width=60%}
-::::
-
-:::: fragment
-![](figs/sampling_sim_sub_l1_l2_l3.png){width=60%}
+![](figs/sampling_sim_sub_l1_l2_l3.png){width=70%}
 ::::
 
 :::
 
-## 
 
-![](figs/sampling_sim+62400.png)
+## {data-background-image="figs/folks/yan_wong.jpg" data-background-position="bottom 50px right 50px" data-background-size=10%}
 
-
-
-##
-
-![](figs/validation.png)
+![](figs/validation_sub.png)
 
 
 # Back to the data
 
-##
+## {data-background-image="figs/folks/ben_jeffery.jpg" data-background-position="bottom 50px right 50px" data-background-size=10%}
 
 We built the world’s largest whole-chromosome tree sequence from the phased 100,000 Genomes Project (aggV2) dataset.
 
@@ -869,14 +1047,9 @@ Age Divergence at Allele Count (ADAC) quantifies (as a bayes factor) the probabi
 
 :::
 
-## Deleterious variants are enrichec in recent times
+## Deleterious variants are enriched in recent times
 
 ![](figs/sam/missense_enrichment.png)
-
--------
-
-
-![](figs/sam/missense_enrichment2.png)
 
 -------
 
@@ -885,13 +1058,21 @@ Age Divergence at Allele Count (ADAC) quantifies (as a bayes factor) the probabi
 
 -----------
 
-More uncertain if a mutation is truly rare as a function of how dissimilar an individual’s ancestries are relative those in the data.
+![](figs/sam/example-indiv.png)
 
-Tree sequences capture the complex and continuous nature of human genetic ancestry. 
+## Conclusions
 
-Mutations that appear on deeper branches / are estimated to be older than expected given their frequency in the data reflect this* uncertainty (at single locus resolution). 
+- Mutations may be rare because they are recent
+    or just because the individual's ancestry is not well-represented in the data.
 
-ARG inference and variant dating method that are robust to the realities of modern biobanks (large, heterogeneous, unbalanced) may reveal unknown histories and signals of selection hidden in the ultra-rare frequency spectrum without the need for discrete labels (becomes dataset relative).
+- ARGs capture the complex and continuous nature of human genetic ancestry. 
+
+- Mutations' age estimation reflects thsi uncertainty (at single locus resolution). 
+
+- ARG inference and variant dating methods that work well with
+    large, heterogeneous, and unbalanced biobanks
+    can provide valuabel insights into genetic variation
+    without the need for discrete cateogrizations.
 
 
 # Wrap-up
@@ -929,24 +1110,27 @@ ARG inference and variant dating method that are robust to the realities of mode
 :::
 ::::::
 
+
 ## Thanks!
 
 :::: {.columns}
-:::::::: {.column width=50%}
+:::::::: {.column width=40%}
 
-
+<div style="font-size: 85%;">
 - Andy Kern
+- Nate Pope
 - Victoria Caudill
 - Murillo Rodrigues 
 - Gilia Patterson
 - Chris Smith
-- Nate Pope
+- Thomas Forest
 - Jiseon Min
 - Clara Rehmann
-- Bruce Edelman
 - Anastasia Teterina
-- Matt Lukac
+- Angel Rivera-Colon
 <!--
+- Bruce Edelman
+- Matt Lukac
 - Saurabh Belsare
 - Gabby Coffing
 - Jeff Adrion
@@ -960,16 +1144,27 @@ Funding:
 - NIH NIGMS
 - NSF DBI
 
-::::
-:::::::: {.column width=50%}
+</div>
 
-<div style="font-size: 85%; margin-top: -40px;">
+<img src="figs/KernRalph_5x5.png" alt="KR-colab logo" style="width: 50%; margin: 0px;"/>
+
+::::
+:::::::: {.column width=60%}
+
+:::::::::: {.columns}
+::::::::::::: {.column width=30%}
+
+<div style="font-size: 85%;">
 
 
 - Jerome Kelleher
 - Ben Haller
-- Ben Jeffery
 - Yan Wong
+- Ben Jeffery
+- Sam Tallman
+- Duncan Mbuli-Robertson
+- Hanbin Lee
+- Gregor Gorjanc
 - Elsie Chevy
 - Madeline Chase
 - Sean Stankowski
@@ -987,12 +1182,20 @@ Funding:
 
 </div>
 
-::: {.floatright}
-![](figs/KernRalph_5x5.png){width=20%}
-![tskit logo](figs/tskit_logo.png){width=30%}
-![SLiM logo](figs/slim_logo.png){width=30%}
-![](figs/colab.png){width=70%}
-:::
+:::::::::::::
+::::::::::::: {.column width=30%}
+
+<div class=centered style="margin-top: -60px;">
+<img src="figs/tskit_logo.png" alt="tskit logo" style="width: 60%; margin: 10px;"/>
+<img src="figs/slim_logo.png" alt="SLiM logo" style="width: 90%; margin: 10px;"/>
+</div>
+
+:::::::::::::
+::::::::::
+
+<div style="margin-top: -30px;">
+![](figs/colab.png){width=80%}
+</div>
 
 ::::
 ::::::::

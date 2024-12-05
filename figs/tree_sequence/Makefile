@@ -10,7 +10,7 @@ all : $(summing_down_figs)
 
 $(summing_down_figs) : summing_down.ink.svg
 
-$(summing_down_pdfs) :
+$(summing_down_pdfs) : summing_down.ink.svg
 	../export-layers-svg.sh $< summing_down_00.pdf base tree1 mut1
 	../export-layers-svg.sh $< summing_down_01.pdf base tree1 mut1 num1
 	../export-layers-svg.sh $< summing_down_02.pdf base tree1 num1 edge1
