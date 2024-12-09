@@ -983,7 +983,7 @@ and some serious computational magic
 ::::::: {.column width=70%}
 
 - Fit by expectation propagation,
-- requiring efficient stable computation of ${}_2F_1(a,b;c)$.
+- requiring efficient stable computation of ${}_2F_1(a,b;c;z)$.
 
 Additional magic:
 
